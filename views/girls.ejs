@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>妹子图管理</title>
+        <link href="http://apitest.wakao.me/css/common.css" type="text/css" rel="stylesheet" />
+        <style type="text/css">
+            /*waterfall start*/
+            .waterFall { display: block; width: 960px; margin: 0 auto; margin-top: 30px; position: relative; }
+            .col { float: left;}
+            .detectDiv { clear: both; text-align: center; color: #000; height: 32px; line-height: 32px; padding-bottom: 20px; }
+            .detectDiv .wf-loading { display: inline-block; padding-left: 32px; background: url(images/loading.gif) 0 0 scroll transparent no-repeat; }
+            /*waterfall end*/
+            .iTop { padding: 7px 0 20px 0;}
+            .iMid { text-align: center; overflow: hidden; width: 420px;}
+            .item { position: relative; padding: 7px 15px; width: 420px; background-color: #FFF; border: 1px #E1E1E1 solid; box-shadow: 3px 2px 5px #E1E1E1;}
+            .item .img { display: block; }
+            .item:hover { z-index: 999; box-shadow: 0 0 20px rgba(0,136,196,0.5); -webkit-transition: box-shadow 0.3s linear; -moz-transition: box-shadow 0.3s linear;}
+        </style>
+    </head>
+    <body>
+        <div id="wf"></div>
+        <a id="gotop" style="text-decoration: none; height: 50px; width: 50px; display: none; text-align: center; line-height: 50px; border: 1px solid rgb(204, 204, 204); background-color: rgb(241, 241, 241);" href="###">Top</a>
+        <!--瀑布流图片展示模板-->
+        <script id="view" type="text/html">
+            <div class="item">
+                <div style="padding-bottom:50px;">
+                    <div class="iMid">
+                        <a class="img" href="http://bcs.duapp.com/imgs00/{pic_url}" target="_blank" >
+                            <img style="width: 450px;" src="http://bcs.duapp.com/imgs00/{pic_url}" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/javascript" src="http://apitest.wakao.me/libs/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="http://apitest.wakao.me/libs/yAjax.js"></script>
+        <script type="text/javascript" src="http://apitest.wakao.me/libs/yTemp.js"></script>
+        <script type="text/javascript" src="http://apitest.wakao.me/libs/imgReady.js"></script>
+        <script type="text/javascript" src="http://apitest.wakao.me/libs/waterFall-1.0.1.js?v=0.0.0.2"></script>
+        <script type="text/javascript" src="http://apitest.wakao.me/libs/yscrolltop.js"></script>
+        <script type="text/javascript" src="http://apitest.wakao.me/js/image.js"></script>
+    </body>
+</html>

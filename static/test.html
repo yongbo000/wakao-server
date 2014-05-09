@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="white">
+        <title>妹子图</title>
+        <link href="http://apitest.wakao.me/css/meinv.css" type="text/css" rel="stylesheet" />
+        <style type="text/css">
+            body,html { height: 100%;}
+            .wrap { width: 100%; }
+            .wf-item { border: 1px #e6e6e6 solid; margin-bottom: 10px; }
+            .wf-item a { display: block; }
+            .wf-item .title { padding: 10px 0; font-size: 14px; }
+            .wf-item img { background: url(images/loading.gif) center center no-repeat #f7f7f7; border-radius: 5px; display: block; width: 100%;}
+            .wf-item:active {background-color: #f0f0f0; }
+            .words p { padding: 10px; margin-bottom: 10px;}
+            .words:active { background-color: #f0f0f0;}
+            .actbar { padding: 10px 0; text-align: right;}
+            .actbar a { display: inline-block; border-radius: 3px; padding: 5px 10px; background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#dedede)); }
+
+            .space_width {padding: 10px; margin-left: 10px; margin-right: 10px; border-radius: 5px;}
+            .full_width { padding: 10px; border-width: 1px 0; }
+
+            .footerbar { position: fixed; left: 0; bottom: 0; height: 46px; line-height: 46px; background-color: #c4c2c2}
+            .footerbar a { display: block; float: left; height: 46px; width: 60px; background: url(images/refresh.png) center center no-repeat; background-size: 32px 32px;}
+            .footerbar a:active {background-color: #d7d7d7;}
+
+            .tip { padding: 10px; color: #580a0a; text-align: center; line-height: 24px; }
+            .tip h2 {font-size: 14px;}
+        </style>
+
+    </head>
+    <body>
+        <div class="footerbar">
+            <a href="javascript:refresh();"></a>
+        </div>
+        <div class="tip">
+            <h2>嘘，更多精彩，你懂的...<br/>^_^即将上线</h2>
+        </div>
+        <div id="wrap" class="wrap">
+            <div id="album_wrap"></div>
+        </div>
+        <div id="page_loading" class="page-loading" style="display: none;"><div class="page-loading-logo"><div class="page-loading-anim"></div></div><div class="page-loading-text">加载中，请稍候...</div></div>
+        <script id="temp_album" type="text/html">
+            <div class="wf-item space_width">
+                <a href="#{album_id}">
+                    <p class="title">{album_title}</p>
+                    <img src="http://apitest.wakao.me/images/blank.gif" data-echo="http://apitest.wakao.me/zoom?size={size}&url=http://bcs.duapp.com/imgs00/{pic_url}" />
+                </a>
+                <div class="actbar">
+                    <a href="http://apitest.wakao.me/zoom?size=1000&url=http://bcs.duapp.com/imgs00/{pic_url}">下载</a>
+                </div>
+            </div>
+        </script>
+        <script id="temp_imageview" type="text/html">
+            <div class="wf-item full_width">
+                <p class="title">{pic_title}</p>
+                <img src="http://apitest.wakao.me/images/blank.gif" data-echo="http://apitest.wakao.me/zoom?size={size}&url=http://bcs.duapp.com/imgs00/{pic_url}" />
+            </div>
+        </script>
+        <script type="text/javascript" src="libs/yTemp.js"></script>
+        <script type="text/javascript" src="libs/yAjax.js"></script>
+        <script type="text/javascript" src="libs/yUtil.js"></script>
+        <script type="text/javascript" src="libs/echo.js"></script>
+        <script type="text/javascript">
+            //(function(){
+                var url = 'http://apitest.wakao.me/random-images/get';
+                var ytemp = new yTemp();
+                var wrap = document.getElementById('wrap');
+                var album_wrap = document.getElementById('album_wrap');
+                var devicePixelRatio = window.devicePixelRatio || 1;
+                var item_w = (wrap.clientWidth - 20) * devicePixelRatio;
+                var loading = document.getElementById('page_loading');
+
+                function handlerData(data){
+                    for(var i=0;i<data.length;i++){
+                        data[i]['size'] = item_w;
+                    }
+                    return data;
+                }
+                function showLoading(){
+                    loading.style.display = '-webkit-box';
+                }
+                function hideLoading(){
+                    loading.style.display = 'none';
+                }
+
+                function render(){
+                    showLoading();
+                    yAjax.get(url, null, function (res) {
+                        var data = JSON.parse(res).data;
+                        album_wrap.innerHTML = ytemp.parse2HTML('temp_imageview',handlerData(data));
+                        lazyLoad();
+                        hideLoading();
+                    });
+                    document.body.scrollTop = 0;
+                }
+
+                function lazyLoad(){
+                    Echo.init();
+                }
+
+                function refresh(){
+                    render();
+                }
+
+                render();
+            //})();
+
+        </script>
+    </body>
+</html>
