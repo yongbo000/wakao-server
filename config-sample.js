@@ -8,6 +8,8 @@ module.exports = {
     _user : _Debug ? 'root' : '',
     _password : _Debug ? 'mysql5421' : '',
     _port : _Debug ? 3306 : 4050,
+    ak:'',
+    sk:'',
 
     _reg_isvalid_id: /^[0-9]\d*$/
 
