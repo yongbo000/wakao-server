@@ -1,8 +1,7 @@
 哇靠百科server端源码
 ============
 
-    关于作者：[yongbo](http://blog.wakao.me),
-    花名：济滇，一个爱好移动App的前端工程师。
+    关于作者：[yongbo](http://blog.wakao.me),一个爱好移动App的前端工程师。
 
 哇靠百科server端代码，刚接触node时，一个现学现用的项目。
 客户端源码 [点这里前往](https://github.com/yongbo000/wakao-app)
